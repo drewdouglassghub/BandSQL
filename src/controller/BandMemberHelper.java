@@ -14,7 +14,7 @@ public class BandMemberHelper {
 	static	EntityManagerFactory emfactory	=	
 			Persistence.createEntityManagerFactory("BandSQL");
 	
-	public void insertItem(BandMember bm) {
+	public void insertMember(BandMember bm) {
 		
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
@@ -27,10 +27,11 @@ public class BandMemberHelper {
 		public List<BandMember> showAllItems() {
 			EntityManager em = emfactory.createEntityManager();
 			List<BandMember> allItems = em.createQuery("SELECT i FROM BandMember i").getResultList();
+			System.out.println("");
 			return allItems;
 		}
 
-		public void deleteItem(BandMember toDelete) {
+		public void deleteMember(BandMember toDelete) {
 			// TODO Auto-generated method stub
 			EntityManager em = emfactory.createEntityManager();
 			em.getTransaction().begin();
@@ -77,7 +78,7 @@ public class BandMemberHelper {
 			// TODO Auto-generated method stub
 			EntityManager em = emfactory.createEntityManager();
 			em.getTransaction().begin();
-			TypedQuery<BandMember> typedQuery = em.createQuery("select bm from ListItem bm where bm.store = :selectedStore", BandMember.class);
+			TypedQuery<BandMember> typedQuery = em.createQuery("select bm from BandMember bm where bm.name = :selectedName", BandMember.class);
 			typedQuery.setParameter("selectedName", memberName);
 
 			List<BandMember> foundItems = typedQuery.getResultList();
@@ -89,7 +90,7 @@ public class BandMemberHelper {
 			// TODO Auto-generated method stub
 			EntityManager em = emfactory.createEntityManager();
 			em.getTransaction().begin();
-			TypedQuery<BandMember> typedQuery = em.createQuery("select li from ListItem li where li.item = :selectedItem", BandMember.class);
+			TypedQuery<BandMember> typedQuery = em.createQuery("select bm from BandMember bm where bm.instrument = :selectedInstrument", BandMember.class);
 			typedQuery.setParameter("selectedInstrument", instrumentName);
 
 			List<BandMember> foundItems = typedQuery.getResultList();

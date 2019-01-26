@@ -34,6 +34,13 @@ public class BandMember {
 		this.name = name;
 		this.instrument = instrument;
 	}
+	
+	public BandMember(String name, String instrument) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.instrument = instrument;
+	}
 
 	public int getId() {
 		return id;

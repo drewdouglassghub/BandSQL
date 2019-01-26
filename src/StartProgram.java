@@ -10,29 +10,30 @@ public class StartProgram {
 		static Scanner in = new Scanner(System.in);
 		static BandMemberHelper bmh = new BandMemberHelper();
 
-		private static void addAnItem() {
+		private static void addAMember() {
 			// TODO Auto-generated method stub
 			System.out.print("Enter a name: ");
 			String name = in.nextLine();
 			System.out.print("Enter an instrument: ");
 			String instrument = in.nextLine();
 
-			BandMember toAdd = new BandMember();
-			bmh.insertItem(toAdd);
+			BandMember toAdd = new BandMember(name, instrument);
+			bmh.insertMember(toAdd);
 		}
 
-		private static void deleteAnItem() {
+		private static void deleteAMember() {
 			// TODO Auto-generated method stub
 			System.out.print("Enter the name to delete: ");
-			String store = in.nextLine();
+			String name = in.nextLine();
 			System.out.print("Enter the instrument to delete: ");
-			String item = in.nextLine();
+			String instrument = in.nextLine();
 
-			BandMember toDelete = new BandMember();
-			bmh.deleteItem(toDelete);
+			BandMember toDelete = new BandMember(name, instrument);
+			bmh.deleteMember(toDelete);
+			System.out.println("Band member deleted");
 		}
 
-		private static void editAnItem() {
+		private static void editAMember() {
 			// TODO Auto-generated method stub
 			System.out.println("How would you like to search? ");
 			System.out.println("1 : Search by Name");	
@@ -59,7 +60,7 @@ public class StartProgram {
 				int idToEdit = in.nextInt();
 
 				BandMember toEdit = bmh.searchForMemberById(idToEdit);
-				System.out.println("Retrieved " + toEdit.getName() + " from " + toEdit.getInstrument());
+				System.out.println("Retrieved " + toEdit.getName() + " who plays " + toEdit.getInstrument());
 				System.out.println("1 : Update Name");
 				System.out.println("2 : Update Instrument");
 				int update = in.nextInt();
@@ -76,6 +77,7 @@ public class StartProgram {
 				}
 
 				bmh.updateItem(toEdit);
+				System.out.println("Band member updated");
 
 			} else {
 				System.out.println("---- No results found");
@@ -104,11 +106,11 @@ public class StartProgram {
 				in.nextLine();
 
 				if (selection == 1) {
-					addAnItem();
+					addAMember();
 				} else if (selection == 2) {
-					editAnItem();
+					editAMember();
 				} else if (selection == 3) {
-					deleteAnItem();
+					deleteAMember();
 				} else if (selection == 4) {
 					viewTheList();
 				} else {
@@ -127,7 +129,7 @@ public class StartProgram {
 			for(BandMember singleItem : allItems){
 				System.out.println(singleItem.memberDetails());
 			}
-
+			System.out.println(" ");
 		}
 
 	}
