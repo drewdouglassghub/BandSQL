@@ -15,7 +15,7 @@ public class Band {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
 	private int Id;
-	@Column(name="bandName")
+	@Column(name="bandname")
 	private String bandName;
 	@Column(name="numMembers")
 	private int numMembers;
@@ -76,8 +76,8 @@ public class Band {
 		this.musicStyle = musicStyle;
 	}
 	
-	public String bandDetails(int id) {
-		return "Band name: " + bandName + "Number of members: " + numMembers + "Style: " + musicStyle;
+	public String bandDetails() {
+		return "Band name: " + bandName + "\nNumber of members: " + numMembers + "\nStyle: " + musicStyle + "\n";
 	}
 	
 }

@@ -1,7 +1,9 @@
 import java.util.List;
 import java.util.Scanner;
 
+import controller.BandHelper;
 import controller.BandMemberHelper;
+import model.Band;
 import model.BandMember;
 
 
@@ -9,6 +11,7 @@ public class StartProgram {
 
 		static Scanner in = new Scanner(System.in);
 		static BandMemberHelper bmh = new BandMemberHelper();
+		static BandHelper bh = new BandHelper();
 
 		private static void addAMember() {
 			// TODO Auto-generated method stub
@@ -76,7 +79,7 @@ public class StartProgram {
 					toEdit.setInstrument(newInstrument);
 				}
 
-				bmh.updateItem(toEdit);
+				bmh.updateMember(toEdit);
 				System.out.println("Band member updated");
 
 			} else {
@@ -96,11 +99,16 @@ public class StartProgram {
 			System.out.println("--- Welcome to our awesome shopping list! ---");
 			while (goAgain) {
 				System.out.println("*  Select an item:");
-				System.out.println("*  1 -- Add an item");
-				System.out.println("*  2 -- Edit an item");
-				System.out.println("*  3 -- Delete an item");
-				System.out.println("*  4 -- View the list");
-				System.out.println("*  5 -- Exit the awesome program");
+				System.out.println("*  1 -- Add a member");
+				System.out.println("*  2 -- Edit a member");
+				System.out.println("*  3 -- Delete a member");
+				System.out.println("*  4 -- View the list of band members");
+				System.out.println("");
+				System.out.println("*  5 -- View the list of bands");
+				System.out.println("*  6 -- Add a band");
+				System.out.println("*  7 -- Edit a band");
+				System.out.println("*  7 -- Delete a band");
+				System.out.println("*  8 -- Exit the awesome program");
 				System.out.print("*  Your selection: ");
 				int selection = in.nextInt();
 				in.nextLine();
@@ -112,8 +120,12 @@ public class StartProgram {
 				} else if (selection == 3) {
 					deleteAMember();
 				} else if (selection == 4) {
-					viewTheList();
+					viewMemberList();
+				}
+				else if (selection == 5) {
+					viewBandList();
 				} else {
+					bmh.cleanUp();
 					bmh.cleanUp();
 					System.out.println("   Goodbye!   ");
 					goAgain = false;
@@ -123,9 +135,17 @@ public class StartProgram {
 
 		}
 		
+		private static void viewBandList() {
+			List<Band> allItems = bh.showAllBands();
+			for(Band singleItem : allItems){
+				System.out.println(singleItem.bandDetails());
+			}
+			System.out.println(" ");
+		}
+		
 
-		private static void viewTheList() {
-			List<BandMember> allItems = bmh.showAllItems();
+		private static void viewMemberList() {
+			List<BandMember> allItems = bmh.showAllMembers();
 			for(BandMember singleItem : allItems){
 				System.out.println(singleItem.memberDetails());
 			}

@@ -12,34 +12,39 @@ import javax.persistence.Table;
 @Entity
 @Table(name="musicians")
 public class BandMember {
-
+	
+	
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name="MUSICIANID")
 	private int id;
-	@Column(name="NAME")
+	@Column(name="MEMBERNAME")
 	private String name;
-	@Column(name="instrument")
+	@Column(name="INSTRUMENT")
 	private String instrument;
+	@Column(name="BANDID")
+	private int bandid;
 	
-	//ArrayList<String> daysAvail = new ArrayList<String>();
+	
 
 	public BandMember() {
 		super();
 	}	
 
-	public BandMember(int id, String name, String instrument) {
+	public BandMember(String name, String instrument) {
 		super();
-		this.id = id;
+
 		this.name = name;
 		this.instrument = instrument;
 	}
+
+	public String getBandName() {
+		return bandName;
+	}
 	
-	public BandMember(String name, String instrument) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.instrument = instrument;
+	public int getBandid() {
+		return bandid;
 	}
 
 	public int getId() {
@@ -67,7 +72,8 @@ public class BandMember {
 	}	
 	
 	public String memberDetails() {
-		return name + " - " + instrument;
+		String bandName = this.getName(thi);
+		return name + " plays " + instrument + " in " + bandName + "\n";
 	}
 	
 }

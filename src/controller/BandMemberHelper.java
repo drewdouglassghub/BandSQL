@@ -24,7 +24,7 @@ public class BandMemberHelper {
 		
 	}
 		
-		public List<BandMember> showAllItems() {
+		public List<BandMember> showAllMembers() {
 			EntityManager em = emfactory.createEntityManager();
 			List<BandMember> allItems = em.createQuery("SELECT i FROM BandMember i").getResultList();
 			System.out.println("");
@@ -64,7 +64,7 @@ public class BandMemberHelper {
 			return found;
 		}
 
-		public void updateItem(BandMember toEdit) {
+		public void updateMember(BandMember toEdit) {
 			// TODO Auto-generated method stub
 			EntityManager em = emfactory.createEntityManager();
 			em.getTransaction().begin();
