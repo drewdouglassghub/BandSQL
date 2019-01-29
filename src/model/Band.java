@@ -13,8 +13,6 @@ public class Band {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
-	private int Id;
 	@Column(name="bandname")
 	private String bandName;
 	@Column(name="numMembers")
@@ -30,22 +28,10 @@ public class Band {
 
 	public Band(int id, String bandName, int numMembers, String musicStyle) {
 		super();
-		this.Id = id;
 		this.bandName = bandName;
 		this.numMembers = numMembers;
 		this.musicStyle = musicStyle;
 	}
-
-
-	public int getId() {
-		return Id;
-	}
-
-
-	public void setId(int id) {
-		Id = id;
-	}
-
 
 	public String getBandName() {
 		return bandName;

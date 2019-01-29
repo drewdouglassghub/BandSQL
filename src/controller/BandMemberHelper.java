@@ -26,9 +26,9 @@ public class BandMemberHelper {
 		
 		public List<BandMember> showAllMembers() {
 			EntityManager em = emfactory.createEntityManager();
-			List<BandMember> allItems = em.createQuery("SELECT i FROM BandMember i").getResultList();
+			List<BandMember> allMusicians = em.createQuery("SELECT i FROM BandMember i").getResultList();
 			System.out.println("");
-			return allItems;
+			return allMusicians;
 		}
 
 		public void deleteMember(BandMember toDelete) {
@@ -39,7 +39,8 @@ public class BandMemberHelper {
 					"select bm from BandMember bm where bm.name = :selectedName and bm.instrument = :selectedInstrument",
 					BandMember.class);
 			// Substitute parameter with actual data from the toDelete item
-			typedQuery.setParameter("selectedName", toDelete.getName());
+			typedQuery.setParameter("selectedFirstName", toDelete.getFirstName());
+			typedQuery.setParameter("selectedLastName", toDelete.getLastName());
 			typedQuery.setParameter("selectedInstrument", toDelete.getInstrument());
 
 			// we only want one result

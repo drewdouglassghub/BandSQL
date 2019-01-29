@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,38 +12,39 @@ import javax.persistence.Table;
 @Table(name="musicians")
 public class BandMember {
 	
-	
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="MUSICIANID")
 	private int id;
-	@Column(name="MEMBERNAME")
-	private String name;
+	@Column(name="FIRSTNAME")
+	private String firstName;
+	@Column(name="LASTNAME")
+	private String lastName;
 	@Column(name="INSTRUMENT")
 	private String instrument;
-	@Column(name="BANDID")
-	private int bandid;
+	@Column(name="BANDNAME")
+	private String bandName;
 	
 	
+
+	public void setBandName(String bandName) {
+		this.bandName = bandName;
+	}
 
 	public BandMember() {
 		super();
 	}	
 
-	public BandMember(String name, String instrument) {
+	public BandMember(String first, String last, String instrument) {
 		super();
 
-		this.name = name;
+		this.firstName = first;
+		this.lastName = last;
 		this.instrument = instrument;
 	}
 
 	public String getBandName() {
 		return bandName;
-	}
-	
-	public int getBandid() {
-		return bandid;
 	}
 
 	public int getId() {
@@ -55,12 +55,22 @@ public class BandMember {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getInstrument() {
@@ -72,8 +82,7 @@ public class BandMember {
 	}	
 	
 	public String memberDetails() {
-		String bandName = this.getName(thi);
-		return name + " plays " + instrument + " in " + bandName + "\n";
+		return firstName + " " + lastName + " plays " + instrument + " in " + bandName + "\n";
 	}
 	
 }

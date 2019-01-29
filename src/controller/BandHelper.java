@@ -27,9 +27,9 @@ public class BandHelper {
 	
 	public List<Band> showAllBands() {
 		EntityManager em = emfactory.createEntityManager();
-		List<Band> allItems = em.createQuery("SELECT i FROM Band i").getResultList();
+		List<Band> allBands = em.createQuery("SELECT i FROM Band i").getResultList();
 		System.out.println("");
-		return allItems;
+		return allBands;
 	}
 
 	public void deleteBand(Band toDelete) {
@@ -41,7 +41,7 @@ public class BandHelper {
 				Band.class);
 		// Substitute parameter with actual data from the toDelete item
 		typedQuery.setParameter("selectedName", toDelete.getBandName());
-		typedQuery.setParameter("selectedInstrument", toDelete.getId());
+		typedQuery.setParameter("selectedStyle", toDelete.getMusicStyle());
 
 		// we only want one result
 		typedQuery.setMaxResults(1);
@@ -56,14 +56,6 @@ public class BandHelper {
 
 	}
 
-	public Band searchForBandById(int idToEdit) {
-		// TODO Auto-generated method stub
-		EntityManager em = emfactory.createEntityManager();
-		em.getTransaction().begin();
-		Band found = em.find(Band.class, idToEdit);
-		em.close();
-		return found;
-	}
 
 	public void updateBand(Band toEdit) {
 		// TODO Auto-generated method stub

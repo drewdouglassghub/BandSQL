@@ -15,23 +15,27 @@ public class StartProgram {
 
 		private static void addAMember() {
 			// TODO Auto-generated method stub
-			System.out.print("Enter a name: ");
-			String name = in.nextLine();
+			System.out.print("Enter a first name: ");
+			String firstName = in.nextLine();
+			System.out.println("Enter a last name: ");
+			String lastName = in.nextLine();
 			System.out.print("Enter an instrument: ");
 			String instrument = in.nextLine();
 
-			BandMember toAdd = new BandMember(name, instrument);
+			BandMember toAdd = new BandMember(firstName, lastName, instrument);
 			bmh.insertMember(toAdd);
 		}
 
 		private static void deleteAMember() {
 			// TODO Auto-generated method stub
-			System.out.print("Enter the name to delete: ");
-			String name = in.nextLine();
-			System.out.print("Enter the instrument to delete: ");
+			System.out.print("Enter a first name: ");
+			String firstName = in.nextLine();
+			System.out.println("Enter a last name: ");
+			String lastName = in.nextLine();
+			System.out.print("Enter an instrument: ");
 			String instrument = in.nextLine();
 
-			BandMember toDelete = new BandMember(name, instrument);
+			BandMember toDelete = new BandMember(firstName, lastName, instrument);
 			bmh.deleteMember(toDelete);
 			System.out.println("Band member deleted");
 		}
@@ -61,19 +65,24 @@ public class StartProgram {
 				}
 				System.out.print("Which ID to edit: ");
 				int idToEdit = in.nextInt();
-
+				
 				BandMember toEdit = bmh.searchForMemberById(idToEdit);
-				System.out.println("Retrieved " + toEdit.getName() + " who plays " + toEdit.getInstrument());
-				System.out.println("1 : Update Name");
-				System.out.println("2 : Update Instrument");
+				System.out.println("Retrieved " + toEdit.getFirstName() + " who plays " + toEdit.getInstrument());
+				System.out.println("1 : Update First Name");
+				System.out.println("2 : Update Last Name");
+				System.out.println("3 : Update Instrument");
 				int update = in.nextInt();
 				in.nextLine();
 
 				if (update == 1) {
-					System.out.print("New Name: ");
+					System.out.print("New First Name: ");
 					String newMember = in.nextLine();
-					toEdit.setName(newMember);
+					toEdit.setFirstName(newMember);
 				} else if (update == 2) {
+					System.out.print("New Last Name: ");
+					String newMember = in.nextLine();
+					toEdit.setLastName(newMember);
+				} else if (update == 3) {
 					System.out.print("New Instrument: ");
 					String newInstrument = in.nextLine();
 					toEdit.setInstrument(newInstrument);
@@ -126,7 +135,7 @@ public class StartProgram {
 					viewBandList();
 				} else {
 					bmh.cleanUp();
-					bmh.cleanUp();
+					bh.cleanUp();
 					System.out.println("   Goodbye!   ");
 					goAgain = false;
 				}
@@ -136,8 +145,8 @@ public class StartProgram {
 		}
 		
 		private static void viewBandList() {
-			List<Band> allItems = bh.showAllBands();
-			for(Band singleItem : allItems){
+			List<Band> allBands = bh.showAllBands();
+			for(Band singleItem : allBands){
 				System.out.println(singleItem.bandDetails());
 			}
 			System.out.println(" ");
@@ -145,8 +154,8 @@ public class StartProgram {
 		
 
 		private static void viewMemberList() {
-			List<BandMember> allItems = bmh.showAllMembers();
-			for(BandMember singleItem : allItems){
+			List<BandMember> allMusicians = bmh.showAllMembers();
+			for(BandMember singleItem : allMusicians){
 				System.out.println(singleItem.memberDetails());
 			}
 			System.out.println(" ");
