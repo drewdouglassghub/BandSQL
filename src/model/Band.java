@@ -13,6 +13,8 @@ public class Band {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="bandid")
+	private int bandId;
 	@Column(name="bandname")
 	private String bandName;
 	@Column(name="numMembers")
@@ -24,13 +26,32 @@ public class Band {
 	public Band() {
 		super();
 	}
+	
+	public Band(String bandName, String musicStyle) {
+		super();
+		this.bandName = bandName;
+		this.musicStyle = musicStyle;
+	}
 
-
-	public Band(int id, String bandName, int numMembers, String musicStyle) {
+	public Band(String bandName, int numMembers, String musicStyle) {
 		super();
 		this.bandName = bandName;
 		this.numMembers = numMembers;
 		this.musicStyle = musicStyle;
+	}
+
+	public Band(int id, String bandName, int numMembers, String musicStyle) {
+		super();
+		this.bandId = id;
+		this.bandName = bandName;
+		this.numMembers = numMembers;
+		this.musicStyle = musicStyle;
+	}
+
+	
+	
+	public int getBandId() {
+		return bandId;
 	}
 
 	public String getBandName() {
@@ -63,7 +84,7 @@ public class Band {
 	}
 	
 	public String bandDetails() {
-		return "Band name: " + bandName + "\nNumber of members: " + numMembers + "\nStyle: " + musicStyle + "\n";
+		return "Band name: " + bandName  + "\nStyle: " + musicStyle +  "\nNumber of members: " + numMembers + "\n";
 	}
 	
 }

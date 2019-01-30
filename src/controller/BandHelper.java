@@ -25,6 +25,15 @@ public class BandHelper {
 		
 	}
 	
+	public Band searchForBandById(int idToEdit) {
+		// TODO Auto-generated method stub
+		EntityManager em = emfactory.createEntityManager();
+		em.getTransaction().begin();
+		Band found = em.find(Band.class, idToEdit);
+		em.close();
+		return found;
+	}
+	
 	public List<Band> showAllBands() {
 		EntityManager em = emfactory.createEntityManager();
 		List<Band> allBands = em.createQuery("SELECT i FROM Band i").getResultList();
@@ -37,7 +46,7 @@ public class BandHelper {
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
 		TypedQuery<Band> typedQuery = em.createQuery(
-				"select b from Band b where b.name = :selectedName and b.id = :selectedid",
+				"select b from Band b where b.bandName = :selectedName and b.musicStyle = :selectedStyle",
 				Band.class);
 		// Substitute parameter with actual data from the toDelete item
 		typedQuery.setParameter("selectedName", toDelete.getBandName());
@@ -71,7 +80,7 @@ public class BandHelper {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Band> typedQuery = em.createQuery("select b from Band b where b.name = :selectedName", Band.class);
+		TypedQuery<Band> typedQuery = em.createQuery("select b from Band b where b.bandName = :selectedName", Band.class);
 		typedQuery.setParameter("selectedName", bandName);
 
 		List<Band> foundItems = typedQuery.getResultList();
@@ -83,7 +92,7 @@ public class BandHelper {
 		// TODO Auto-generated method stub
 		EntityManager em = emfactory.createEntityManager();
 		em.getTransaction().begin();
-		TypedQuery<Band> typedQuery = em.createQuery("select b from Band b where b.style = :selectedStyle", Band.class);
+		TypedQuery<Band> typedQuery = em.createQuery("select b from Band b where b.musicStyle = :selectedStyle", Band.class);
 		typedQuery.setParameter("selectedStyle", style);
 
 		List<Band> foundItems = typedQuery.getResultList();

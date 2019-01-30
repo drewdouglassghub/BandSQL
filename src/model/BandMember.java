@@ -24,16 +24,11 @@ public class BandMember {
 	private String instrument;
 	@Column(name="BANDNAME")
 	private String bandName;
-	
-	
-
-	public void setBandName(String bandName) {
-		this.bandName = bandName;
-	}
 
 	public BandMember() {
 		super();
 	}	
+
 
 	public BandMember(String first, String last, String instrument) {
 		super();
@@ -43,19 +38,17 @@ public class BandMember {
 		this.instrument = instrument;
 	}
 
-	public String getBandName() {
-		return bandName;
+	public BandMember(String firstName, String lastName, String instrument, String bandName) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.instrument = instrument;
+		this.bandName = bandName;
 	}
 
 	public int getId() {
 		return id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
 
 	public String getFirstName() {
 		return firstName;
@@ -80,6 +73,14 @@ public class BandMember {
 	public void setInstrument(String instrument) {
 		this.instrument = instrument;
 	}	
+	
+	public String getBandName() {
+		return bandName;
+	}
+	
+	public void setBandName(String bandName) {
+		this.bandName = bandName;
+	}
 	
 	public String memberDetails() {
 		return firstName + " " + lastName + " plays " + instrument + " in " + bandName + "\n";
