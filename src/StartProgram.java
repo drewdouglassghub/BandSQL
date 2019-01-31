@@ -8,6 +8,26 @@ import model.Band;
 import model.BandMember;
 
 
+/**
+ * @author Drew Douglass, amdouglass@dmacc.edu, 1/30/19
+ * used the following sql commands to create the following tables in mysql for this program.  This program allows the user to view, add, delete, and edit bands and band members in the database tables.
+ * 
+ * create table bands (BANDID int(5) NOT NULL AUTO_INCREMENT,
+					BANDNAME varchar(20) NOT NULL UNIQUE,
+					NUMMEMBERS int(5) NOT NULL,
+                    STYLE varchar(20) NOT NULL,
+					PRIMARY	KEY	(BANDID));
+					
+ * create table musicians (MUSICIANID int NOT NULL AUTO_INCREMENT,
+						FIRSTNAME varchar(20),
+                        LASTNAME varchar(20),
+                        INSTRUMENT varchar(20),
+                        BANDID int(5),
+                        BANDNAME varchar(50),
+                        PRIMARY KEY (MUSICIANID),
+                        FOREIGN KEY (BANDID) REFERENCES Bands(BANDID) ON DELETE CASCADE);
+ *
+ */
 public class StartProgram {
 
 		static Scanner in = new Scanner(System.in);
@@ -29,6 +49,9 @@ public class StartProgram {
 			bmh.insertMember(toAdd);
 		}
 		
+		/**
+		 * user is prompted to enter the attributes of a new band and it is inserted into the bands table
+		 */
 		private static void addABand() {
 			// TODO Auto-generated method stub
 			System.out.print("Enter the band name: ");
@@ -42,6 +65,9 @@ public class StartProgram {
 			bh.insertBand(toAdd);
 		}
 
+		/**
+		 * user searches for a band member to remove them from the database
+		 */
 		private static void deleteAMember() {
 			// TODO Auto-generated method stub
 			System.out.print("Enter a first name: ");
@@ -56,6 +82,10 @@ public class StartProgram {
 			System.out.println("Band member deleted");
 		}
 		
+		/**
+		 * @throws SQLException
+		 * uses the search to identify a band to delete and removes them from the database. I experimented with the SQLException so that the program wouldn't break when band isn't present
+		 */
 		private static void deleteABand() throws SQLException{
 			// TODO Auto-generated method stub
 			System.out.print("Enter a band name: ");
@@ -68,6 +98,9 @@ public class StartProgram {
 			System.out.println("Band deleted");
 		}
 
+		/**
+		 * searches for members and allows user to edit attributes of members
+		 */
 		private static void editAMember() {
 			// TODO Auto-generated method stub
 			System.out.println("How would you like to search? ");
@@ -132,6 +165,9 @@ public class StartProgram {
 
 		}
 		
+		/**
+		 * searches for a band and allows the user to edit the attributes
+		 */
 		private static void editABand() {
 			// TODO Auto-generated method stub
 			System.out.println("How would you like to search? ");
@@ -255,6 +291,9 @@ public class StartProgram {
 
 		}
 		
+		/**
+		 * shows a list of all bands in the database
+		 */
 		private static void viewBandList() {
 			List<Band> allBands = bh.showAllBands();
 			for(Band singleItem : allBands){
@@ -264,6 +303,9 @@ public class StartProgram {
 		}
 		
 
+		/**
+		 * shows a list of all band members in the database
+		 */
 		private static void viewMemberList() {
 			List<BandMember> allMusicians = bmh.showAllMembers();
 			for(BandMember singleItem : allMusicians){
