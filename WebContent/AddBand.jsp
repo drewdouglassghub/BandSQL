@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Band</title>
 </head>
 <body>
 	<form action="AddBandServlet" method="post">
@@ -14,6 +14,7 @@
 		Style of Music: <input type="text" name="musicStyle">
 		<input type="hidden" name="id" value="${bandToEdit.bandId}"> 
 		<input type="submit" value="Add Band">
-	</form>
+	</form><br>
+	<a href="index.html">Home</a>
 </body>
 </html>

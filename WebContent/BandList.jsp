@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Band List</title>
 </head>
 <body>
+<h1>Bands</h1>
 	<form method="post" action="BandNavServlet">
 		<table>
 			<c:forEach items="${requestScope.allBands}" var="currentband">
@@ -19,9 +20,12 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<input type="submit" value="edit" name="doThisToBand"> <input
-			type="submit" value="delete" name="doThisToBand"> <input
-			type="submit" value="add" name="doThisToBand">
-	</form>
+		<input type="submit" value="add" name="doThisToBand">
+		<input type="submit" value="edit" name="doThisToBand"> 
+		<input type="submit" value="delete" name="doThisToBand"> 		
+	</form><br>
+	
+	<a href="index.html">Home</a>
+	
 </body>
 </html>

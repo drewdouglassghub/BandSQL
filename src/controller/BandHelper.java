@@ -13,7 +13,7 @@ import model.BandMember;
 public class BandHelper {
 
 	static	EntityManagerFactory emfactory	=	
-			Persistence.createEntityManagerFactory("BandSQL");
+			Persistence.createEntityManagerFactory("BandWebQL");
 	
 	public void insertBand(Band b) {
 		
